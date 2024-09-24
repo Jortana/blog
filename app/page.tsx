@@ -1,15 +1,10 @@
-import Link from "next/link";
+import { allPosts } from '@/.contentlayer/generated'
 
-const Home = () => {
+export default async function Home() {
+  console.log(allPosts)
   return (
     <div>
-      <h1>Home</h1>
-      <p>Hello World! This is the Home page</p>
-      <p>
-        Visit the <Link href="/about">About</Link> page.
-      </p>
+      <h1 className="text-xl">Home</h1>
     </div>
-  );
-};
-
-export default Home;
+  )
+}

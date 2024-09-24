@@ -1,18 +1,44 @@
 {
+  "name": "blog",
+  "version": "0.0.1",
   "private": true,
+  "description": "Personal blog site generator",
   "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "serve out"
+    "dev": "pnpm dev:next",
+    "dev:next": "next",
+    "build": "pnpm build:next",
+    "build:next": "next build",
+    "start": "serve out",
+    "format:check": "pnpm format --check --debug-check",
+    "format:fix": "pnpm format --write"
   },
   "dependencies": {
+    "@radix-ui/react-dropdown-menu": "^2.1.1",
+    "@radix-ui/react-navigation-menu": "^1.2.0",
+    "@radix-ui/react-slot": "^1.1.0",
     "@types/node": "^18.11.5",
-    "@types/react-dom": "^18.0.7",
     "@types/react": "^18.0.23",
+    "@types/react-dom": "^18.0.7",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "contentlayer": "^0.3.4",
+    "lucide-react": "^0.445.0",
     "next": "latest",
-    "react-dom": "^18.2.0",
+    "next-contentlayer": "^0.3.4",
+    "next-themes": "^0.3.0",
     "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1",
     "serve": "^14.2.0",
-    "typescript": "^4.8.4"
+    "tailwind-merge": "^2.5.2",
+    "tailwindcss-animate": "^1.0.7",
+    "typescript": "^5.6.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.2",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.12"
   }
 }
