@@ -5,7 +5,7 @@ import { withContentlayer } from 'next-contentlayer'
  * @type {import('next').NextConfig}
  **/
 const nextConfig = withContentlayer({
-  output: 'export',
+  // output: 'export',
 })
 
 export default nextConfig

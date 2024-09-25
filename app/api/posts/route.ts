@@ -2,6 +2,8 @@
 import { NextResponse } from 'next/server'
 import { allPosts } from '@/.contentlayer/generated'
 
+export const dynamic = 'force-dynamic'
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
   const pageParam = searchParams.get('page') || '1'

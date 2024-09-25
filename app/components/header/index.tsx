@@ -19,7 +19,7 @@ const navLinks: { title: string; href: string; description?: string }[] = [
 
 export function Header() {
   return (
-    <nav className="xl:px-0 py-2 bg-background">
+    <nav className="xl:px-0 py-2 px-4 bg-background">
       <div className="mx-auto flex items-center xl:max-w-7xl md:max-w-5xl">
         <h1>
           <Button variant="ghost">

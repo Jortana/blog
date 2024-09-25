@@ -14,7 +14,9 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
         >
           <Header />
           <div className="mx-auto px-4 pt-4 pb-12 xl:max-w-7xl md:max-w-5xl mt-6">
-            {children}
+            <div>left</div>
+            <div>{children}</div>
+            <div>right</div>
           </div>
           {/* <Footer /> */}
         </ThemeProvider>
