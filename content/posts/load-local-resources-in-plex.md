@@ -6,7 +6,7 @@ tags:
   - Plex
   - 家庭影院系统
   - 家用服务器
-headerImage: https://ab84760.webp.li/2048.jpeg
+headerImage: https://ab84760.webp.li/plex-cover.jpg
 
 ---
 

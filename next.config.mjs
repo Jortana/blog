@@ -14,7 +14,7 @@ const nextConfig = withContentlayer({
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**', // 允许所有域名
+        hostname: '*.webp.li',
       },
     ],
   },

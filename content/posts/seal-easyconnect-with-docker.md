@@ -7,7 +7,7 @@ tags:
   - EasyConnect
   - Clash
   - 实用工具
-headerImage: https://ab84760.webp.li/docker-seal-easyconnect.png
+headerImage: https://ab84760.webp.li/docker-seal-new-1.jpg
 
 ---
 
