@@ -15,13 +15,25 @@ export type Post = {
   type: 'Post'
   title: string
   date: IsoDateTimeString
-  categories: string[]
+  category: string
   tags: string[]
+  headerImage?: string | undefined
   draft: boolean
   /** Markdown file body */
   body: Markdown
   url: string
   excerpt: string
+  headerImage: string
+}
+
+export type Thought = {
+  /** File path relative to `contentDirPath` */
+  _id: string
+  _raw: Local.RawDocumentData
+  type: 'Thought'
+  /** Markdown file body */
+  body: Markdown
+
 }  
 
 /** Nested types */
@@ -32,8 +44,8 @@ export type Post = {
 export type AllTypes = DocumentTypes | NestedTypes
 export type AllTypeNames = DocumentTypeNames | NestedTypeNames
 
-export type DocumentTypes = Post
-export type DocumentTypeNames = 'Post'
+export type DocumentTypes = Post | Thought
+export type DocumentTypeNames = 'Post' | 'Thought'
 
 export type NestedTypes = never
 export type NestedTypeNames = never
@@ -41,6 +53,7 @@ export type NestedTypeNames = never
 export type DataExports = {
   allDocuments: DocumentTypes[]
   allPosts: Post[]
+  allThoughts: Thought[]
 }
 
 
@@ -61,6 +74,7 @@ declare global {
 
 export type DocumentTypeMap = {
   Post: Post
+  Thought: Thought
 }
 
 export type NestedTypeMap = {

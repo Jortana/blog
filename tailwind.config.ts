@@ -74,6 +74,7 @@ const config = {
       },
       gridTemplateColumns: {
         'balanced-wide': '23fr 54fr 23fr',
+        'narrow-wide': '12fr 25fr',
       },
     },
   },

@@ -1,0 +1,37 @@
+{
+  "cacheItemsMap": {
+    "posts/hello-world.md": {
+      "document": {
+        "title": "Hello World",
+        "date": "2023-10-01T00:00:00.000Z",
+        "categories": [
+          "编程"
+        ],
+        "tags": [
+          "JavaScript",
+          "Next.js"
+        ],
+        "headerImage": "https://foter.com/photos/424/white-counter-height-contemporary-table.jpeg",
+        "draft": false,
+        "body": {
+          "raw": "\n这是我的第一篇博客文章的摘要部分。\n\n<!-- more -->\n\n这是正文部分，将不会出现在摘要中。\n",
+          "html": "<p>这是我的第一篇博客文章的摘要部分。</p>\n<p>这是正文部分，将不会出现在摘要中。</p>"
+        },
+        "_id": "posts/hello-world.md",
+        "_raw": {
+          "sourceFilePath": "posts/hello-world.md",
+          "sourceFileName": "hello-world.md",
+          "sourceFileDir": "posts",
+          "contentType": "markdown",
+          "flattenedPath": "posts/hello-world"
+        },
+        "type": "Post",
+        "url": "/post/hello-world",
+        "excerpt": "这是我的第一篇博客文章的摘要部分。"
+      },
+      "documentHash": "1727368775001",
+      "hasWarnings": false,
+      "documentTypeName": "Post"
+    }
+  }
+}

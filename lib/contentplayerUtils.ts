@@ -14,9 +14,7 @@ export function getAllCategories() {
   const categoriesSet = new Set<string>()
 
   for (const post of allPosts) {
-    for (const category of post.categories) {
-      categoriesSet.add(category)
-    }
+    categoriesSet.add(post.category)
   }
 
   return {
@@ -46,7 +44,7 @@ export function getAllTags() {
 /**
  * 返回分页的文章
  */
-export function getPosts(page: number, pageSize: number) {
+export function getPosts(page = 1, pageSize = 5) {
   // 过滤掉草稿文章并按日期排序
   const posts = allPosts
     .filter((post) => !post.draft)
@@ -66,11 +64,7 @@ export function getPosts(page: number, pageSize: number) {
     pageSize,
     totalPosts,
     totalPages,
-    posts: pagePosts.map((post) => ({
-      title: post.title,
-      date: post.date,
-      url: post.url,
-      excerpt: post.excerpt || '',
-    })),
+    posts: pagePosts,
+    // posts: new Array(5).fill(pagePosts[0]),
   }
 }
