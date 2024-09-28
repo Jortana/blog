@@ -3,6 +3,17 @@ import { Header } from '@app/components/header'
 import { ThemeProvider } from '@/components/theme-provider'
 import { memo } from 'react'
 import { Info } from './components/info'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  // 整个站点共用的 metadata
+  viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
+  formatDetection: {
+    telephone: false,
+  },
+  // 默认 title，在 shallow merge 时可被覆盖
+  title: "Rory's blog",
+}
 
 const LeftHolder = memo(() => (
   <div className="block col-start-1 col-end-1 -order-1 w-0 min-w-0 h-0 max-h-0" />
@@ -26,7 +37,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
                 <Info />
               </div>
             </aside>
-            <aside className="order-1 hidden xl:block">right</aside>
+            <aside className="order-1 hidden xl:block" />
           </div>
           {/* <Footer /> */}
         </ThemeProvider>
