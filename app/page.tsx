@@ -9,15 +9,13 @@ export const metadata: Metadata = {
 }
 
 export default async function Home() {
-  const { posts, page } = getPosts()
-
-  const totalPages = page
+  const { posts, page, totalPages } = getPosts()
 
   return (
     <>
       <div className="space-y-6 mb-6">
         {posts.map((post, index) => (
-          <PostCard key={index} post={post} />
+          <PostCard key={index} post={post} isFirst={index === 0} />
         ))}
       </div>
       <Pagination totalPages={totalPages} currentPage={page} />
