@@ -2,6 +2,8 @@ import { Pagination } from '@/app/components/pagination'
 import { PostCard } from '@/app/components/post-card'
 import { getPosts } from '@/lib/contentplayerUtils'
 
+export const runtime = 'edge'
+
 type PostPageProps = {
   params: { pageIndex: string }
 }
