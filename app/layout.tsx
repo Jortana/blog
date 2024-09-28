@@ -1,9 +1,9 @@
 import './globals.css'
-import { Header } from '@app/components/header'
 import { ThemeProvider } from '@/components/theme-provider'
+import { Header } from '@app/components/header'
+import type { Metadata } from 'next'
 import { memo } from 'react'
 import { Info } from './components/info'
-import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   // 整个站点共用的 metadata

@@ -1,7 +1,5 @@
 'use client'
 
-import { Moon, Sun, Laptop } from 'lucide-react'
-import { useTheme } from 'next-themes'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -10,6 +8,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { cn } from '@/lib/tailwindUtils'
+import { Laptop, Moon, Sun } from 'lucide-react'
+import { useTheme } from 'next-themes'
 
 const menuItems = [
   {

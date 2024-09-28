@@ -1,9 +1,9 @@
 import type { Post } from '@/.contentlayer/generated'
-import { Card, CardContent } from '@/components/ui/card'
-import Image from 'next/image'
-import dayjs from 'dayjs'
-import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import dayjs from 'dayjs'
+import Image from 'next/image'
+import Link from 'next/link'
 
 type PostCardProps = {
   post: Post

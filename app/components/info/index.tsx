@@ -1,9 +1,9 @@
 import { Card } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import {
+  getAllCategories,
   getAllTags,
   getTotalPostCount,
-  getAllCategories,
 } from '@/lib/contentplayerUtils'
 import Image from 'next/image'
 
