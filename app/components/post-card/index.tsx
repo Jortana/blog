@@ -7,19 +7,21 @@ import Link from 'next/link'
 
 type PostCardProps = {
   post: Post
+  isFirst?: boolean
 }
 
-export function PostCard({ post }: PostCardProps) {
+export function PostCard({ post, isFirst = false }: PostCardProps) {
   return (
     <Card className="overflow-hidden">
       {post.headerImage && (
-        <div className="relative w-full h-56">
-          <Link href={post.url}>
+        <div className="w-full h-56">
+          <Link href={post.url} className="relative block h-full">
             <Image
               className="object-cover"
               src={post.headerImage}
               alt={post.title}
               fill
+              priority={isFirst}
             />
           </Link>
         </div>

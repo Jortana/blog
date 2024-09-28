@@ -49,7 +49,7 @@ export function Pagination({ totalPages, currentPage }: PaginationProps) {
     <PaginationUI className="flex justify-between items-center">
       {/* 上一页按钮 */}
       <Link
-        href={`/posts/${currentPage - 1}`}
+        href={currentPage === 2 ? '/' : `/posts/${currentPage - 1}`}
         className={cn(
           buttonVariants({ variant: 'ghost' }),
           currentPage > 1 ? 'visible' : 'invisible',

@@ -65,6 +65,11 @@ export function getPosts(page = 1, pageSize = 5) {
     totalPosts,
     totalPages,
     posts: pagePosts,
-    // posts: new Array(5).fill(pagePosts[0]),
   }
+}
+
+export function getPost(id: string) {
+  const post = allPosts.find((post) => post._id === id)
+
+  return post
 }

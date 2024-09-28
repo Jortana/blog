@@ -39,6 +39,7 @@ export function Info() {
               src="/avatar-min.webp"
               alt="avatar"
               fill
+              sizes="6rem"
             />
           </div>
           <h2 className="text-lg text-center">Rory</h2>
