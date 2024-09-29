@@ -1,3 +1,4 @@
+import { TagList } from '@/app/components/tag-list'
 import { Card, CardContent } from '@/components/ui/card'
 import { getPost } from '@/lib/contentplayerUtils'
 import dayjs from 'dayjs'
@@ -19,7 +20,7 @@ export default function PostPage({ params }: PostPageProps) {
     notFound()
   }
 
-  const { headerImage, date } = post
+  const { headerImage, date, tags } = post
 
   return (
     <Card>
@@ -40,6 +41,7 @@ export default function PostPage({ params }: PostPageProps) {
         </div>
         {/* 文章内容 */}
         <div dangerouslySetInnerHTML={{ __html: post.body.html }} />
+        <TagList tags={tags} />
       </CardContent>
     </Card>
   )
