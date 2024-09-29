@@ -1,5 +1,9 @@
+import { Card, CardContent } from '@/components/ui/card'
 import { getPost } from '@/lib/contentplayerUtils'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
+
+export const runtime = 'edge'
 
 type PostPageProps = {
   params: { slug: string }
@@ -14,9 +18,25 @@ export default function PostPage({ params }: PostPageProps) {
     notFound()
   }
 
+  const { headerImage } = post
+
   return (
-    <>
-      <div>{post.title}</div>
-    </>
+    <Card>
+      {headerImage && (
+        <div className="relative w-full h-56">
+          <Image
+            className="object-cover"
+            src={headerImage}
+            alt={post.title}
+            fill
+          />
+        </div>
+      )}
+      <CardContent className="p-6">
+        <h1 className="text-2xl mb-4">{post.title}</h1>
+        {/* 文章内容 */}
+        <div dangerouslySetInnerHTML={{ __html: post.body.html }} />
+      </CardContent>
+    </Card>
   )
 }
