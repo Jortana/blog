@@ -1,5 +1,6 @@
 import { Card, CardContent } from '@/components/ui/card'
 import { getPost } from '@/lib/contentplayerUtils'
+import dayjs from 'dayjs'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 
@@ -18,7 +19,7 @@ export default function PostPage({ params }: PostPageProps) {
     notFound()
   }
 
-  const { headerImage } = post
+  const { headerImage, date } = post
 
   return (
     <Card>
@@ -34,6 +35,7 @@ export default function PostPage({ params }: PostPageProps) {
       )}
       <CardContent className="p-6">
         <h1 className="text-2xl mb-4">{post.title}</h1>
+        <div>{dayjs(date).format('YYYY-MM-DD')}</div>
         {/* 文章内容 */}
         <div dangerouslySetInnerHTML={{ __html: post.body.html }} />
       </CardContent>
