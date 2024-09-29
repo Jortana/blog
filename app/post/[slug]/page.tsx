@@ -33,9 +33,11 @@ export default function PostPage({ params }: PostPageProps) {
           />
         </div>
       )}
-      <CardContent className="p-6">
-        <h1 className="text-2xl mb-4">{post.title}</h1>
-        <div>{dayjs(date).format('YYYY-MM-DD')}</div>
+      <CardContent className="p-6 space-y-4">
+        <h1 className="text-2xl">{post.title}</h1>
+        <div className="text-primary/50">
+          {dayjs(date).format('YYYY-MM-DD')}
+        </div>
         {/* 文章内容 */}
         <div dangerouslySetInnerHTML={{ __html: post.body.html }} />
       </CardContent>
