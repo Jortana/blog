@@ -50,6 +50,10 @@ export const Post = defineDocumentType(() => ({
         return match ? match[1] : null // 返回匹配到的图片 URL，或 null
       },
     },
+    slug: {
+      type: 'string',
+      resolve: (post) => post._raw.flattenedPath.replace('posts/', ''),
+    },
   },
 }))
 

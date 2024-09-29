@@ -24,6 +24,7 @@ export type Post = {
   url: string
   excerpt: string
   headerImage: string
+  slug: string
 }
 
 export type Thought = {

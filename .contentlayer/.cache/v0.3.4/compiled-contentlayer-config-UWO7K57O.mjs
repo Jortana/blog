@@ -35,6 +35,10 @@ var Post = defineDocumentType(() => ({
         const match = post.body.raw.match(imageRegex);
         return match ? match[1] : null;
       }
+    },
+    slug: {
+      type: "string",
+      resolve: (post) => post._raw.flattenedPath.replace("posts/", "")
     }
   }
 }));
@@ -52,4 +56,4 @@ export {
   Thought,
   contentlayer_config_default as default
 };
-//# sourceMappingURL=compiled-contentlayer-config-VB6S6KOB.mjs.map
+//# sourceMappingURL=compiled-contentlayer-config-UWO7K57O.mjs.map

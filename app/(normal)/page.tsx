@@ -1,7 +1,7 @@
 import { getPosts } from '@/lib/contentplayerUtils'
 import type { Metadata } from 'next'
-import { Pagination } from './components/pagination'
-import { PostCard } from './components/post-card'
+import { Pagination } from '../components/pagination'
+import { PostCard } from '../components/post-card'
 
 export const metadata: Metadata = {
   title: "首页 | Rory's blog",

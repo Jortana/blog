@@ -68,8 +68,8 @@ export function getPosts(page = 1, pageSize = 5) {
   }
 }
 
-export function getPost(id: string) {
-  const post = allPosts.find((post) => post._id === id)
+export function getPost(slug: string) {
+  const post = allPosts.find((post) => post.slug === slug)
 
   return post
 }

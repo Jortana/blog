@@ -23,5 +23,6 @@
   },
   "type": "Post",
   "url": "/post/load-local-resources-in-plex",
-  "excerpt": "前几天在鼓捣 Plex 的时候吃了一记 tinyMediaManager 的安利。tMM 的好处在于你可以清楚地看到每部电影、电视剧的各种信息，是没找到、漏了一些还是全找到了，一目了然，但是当 Plex 导入资料库时，往往不会用你搜集好的信息和图片，可能会自己再去搜一次，搜的不一定对，浪费时间，如果出现要手工调整的情况操作起来也比 tMM 麻烦一些，如何让 Plex 自动识别本地的信息呢，需要利用到 Plex 的插件：XBMCnfoMoviesImporter 和 XBMCnfoTVImporter。"
+  "excerpt": "前几天在鼓捣 Plex 的时候吃了一记 tinyMediaManager 的安利。tMM 的好处在于你可以清楚地看到每部电影、电视剧的各种信息，是没找到、漏了一些还是全找到了，一目了然，但是当 Plex 导入资料库时，往往不会用你搜集好的信息和图片，可能会自己再去搜一次，搜的不一定对，浪费时间，如果出现要手工调整的情况操作起来也比 tMM 麻烦一些，如何让 Plex 自动识别本地的信息呢，需要利用到 Plex 的插件：XBMCnfoMoviesImporter 和 XBMCnfoTVImporter。",
+  "slug": "load-local-resources-in-plex"
 }
