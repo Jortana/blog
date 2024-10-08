@@ -42,7 +42,7 @@ export function Info() {
               sizes="6rem"
             />
           </div>
-          <h2 className="text-lg text-center">Rory</h2>
+          <h2 className="text-lg text-center font-medium">Rory</h2>
           <div className="flex items-center space-x-4 h-12 w-fit mx-auto">
             {contentInfoList.map((contentInfo, index) => (
               <>
