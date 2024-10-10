@@ -42,8 +42,10 @@ export default function PostPage({ params }: PostPageProps) {
       )}
       <CardContent className="p-6 space-y-4">
         <h1 className="text-2xl font-bold">{post.title}</h1>
-        <div className="text-primary/50">
-          {dayjs(date).format('YYYY-MM-DD')}
+        <div className="text-primary/50 space-x-2">
+          <span>{dayjs(date).format('YYYY-MM-DD')}</span>
+          <span>·</span>
+          <span>{post.readingTime.text}</span>
         </div>
         {/* 文章内容 */}
         <Markdown

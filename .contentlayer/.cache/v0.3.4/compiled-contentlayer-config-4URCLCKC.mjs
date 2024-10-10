@@ -1,5 +1,16 @@
 // contentlayer.config.ts
-import { defineDocumentType, makeSource } from "contentlayer/source-files";
+import {
+  defineDocumentType,
+  defineNestedType,
+  makeSource
+} from "contentlayer/source-files";
+import { readingTime } from "reading-time-estimator";
+var ReadingTime = defineNestedType(() => ({
+  name: "ReadingTime",
+  fields: {
+    text: { type: "string" }
+  }
+}));
 var Post = defineDocumentType(() => ({
   name: "Post",
   filePathPattern: "posts/*.md",
@@ -39,6 +50,18 @@ var Post = defineDocumentType(() => ({
     slug: {
       type: "string",
       resolve: (post) => post._raw.flattenedPath.replace("posts/", "")
+    },
+    readingTime: {
+      type: "nested",
+      of: ReadingTime,
+      resolve: (post) => {
+        const stats = readingTime(post.body.raw, 400, "cn");
+        const minutes = Math.ceil(stats.minutes);
+        if (minutes <= 1) {
+          return { text: "\u5927\u7EA6\u9700\u8981 1 \u5206\u949F\u9605\u8BFB" };
+        }
+        return { text: `\u5927\u7EA6\u9700\u8981 ${minutes} \u5206\u949F\u9605\u8BFB` };
+      }
     }
   }
 }));
@@ -56,4 +79,4 @@ export {
   Thought,
   contentlayer_config_default as default
 };
-//# sourceMappingURL=compiled-contentlayer-config-UWO7K57O.mjs.map
+//# sourceMappingURL=compiled-contentlayer-config-4URCLCKC.mjs.map

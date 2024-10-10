@@ -1,4 +1,16 @@
-import { defineDocumentType, makeSource } from 'contentlayer/source-files'
+import {
+  defineDocumentType,
+  defineNestedType,
+  makeSource,
+} from 'contentlayer/source-files'
+import { readingTime } from 'reading-time-estimator'
+
+const ReadingTime = defineNestedType(() => ({
+  name: 'ReadingTime',
+  fields: {
+    text: { type: 'string' },
+  },
+}))
 
 export const Post = defineDocumentType(() => ({
   name: 'Post',
@@ -53,6 +65,22 @@ export const Post = defineDocumentType(() => ({
     slug: {
       type: 'string',
       resolve: (post) => post._raw.flattenedPath.replace('posts/', ''),
+    },
+    readingTime: {
+      type: 'nested',
+      of: ReadingTime,
+      resolve: (post) => {
+        const stats = readingTime(post.body.raw, 400, 'cn')
+
+        const minutes = Math.ceil(stats.minutes) // 取整分钟数
+
+        // 根据分钟数显示中文格式的阅读时间
+        if (minutes <= 1) {
+          return { text: '大约需要 1 分钟阅读' }
+        }
+
+        return { text: `大约需要 ${minutes} 分钟阅读` }
+      },
     },
   },
 }))

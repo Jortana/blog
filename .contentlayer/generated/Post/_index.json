@@ -25,7 +25,10 @@
     "type": "Post",
     "url": "/post/load-local-resources-in-plex",
     "excerpt": "前几天在鼓捣 Plex 的时候吃了一记 tinyMediaManager 的安利。tMM 的好处在于你可以清楚地看到每部电影、电视剧的各种信息，是没找到、漏了一些还是全找到了，一目了然，但是当 Plex 导入资料库时，往往不会用你搜集好的信息和图片，可能会自己再去搜一次，搜的不一定对，浪费时间，如果出现要手工调整的情况操作起来也比 tMM 麻烦一些，如何让 Plex 自动识别本地的信息呢，需要利用到 Plex 的插件：XBMCnfoMoviesImporter 和 XBMCnfoTVImporter。",
-    "slug": "load-local-resources-in-plex"
+    "slug": "load-local-resources-in-plex",
+    "readingTime": {
+      "text": "大约需要 2 分钟阅读"
+    }
   },
   {
     "title": "用docker封印EasyConnect并连接远程桌面和数据库",
@@ -54,6 +57,9 @@
     "type": "Post",
     "url": "/post/seal-easyconnect-with-docker",
     "excerpt": "我们学校要使用深信服家的 EasyConnect 才能在外面连内网，我又经常需要连学校的电脑和数据库，在使用了一段时间 EasyConnect 之后，我发现这玩意儿不仅流氓，而且难用。流氓在于不用他的时候进程关不掉，卸载还卸载不干净，也不知道他到底要获取什么数据，关于深信服的黑料网上一搜一大堆。难用在于我一开他，虽然是能连上学校内网了，但是我们学校校园网非常差劲，速度本身就不快，还经常连不上 GitHub，用了他之后，我在路由器上配置的代理也没有用，所以我心想能不能抛弃这个流氓客户端，就在不久前，我终于找到了一套解决方案。",
-    "slug": "seal-easyconnect-with-docker"
+    "slug": "seal-easyconnect-with-docker",
+    "readingTime": {
+      "text": "大约需要 7 分钟阅读"
+    }
   }
 ]

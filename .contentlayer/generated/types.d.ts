@@ -25,6 +25,7 @@ export type Post = {
   excerpt: string
   headerImage: string
   slug: string
+  readingTime: nested
 }
 
 export type Thought = {

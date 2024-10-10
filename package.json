@@ -30,6 +30,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-medium-image-zoom": "^5.2.10",
+    "reading-time-estimator": "^1.11.0",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
     "serve": "^14.2.0",
