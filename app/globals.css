@@ -64,3 +64,12 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* 图片放大的浮层 */
+div[data-rmiz-modal-overlay='visible'] {
+  @apply bg-background/80;
+}
+
+button[data-rmiz-btn-unzoom] {
+  @apply hidden;
+}

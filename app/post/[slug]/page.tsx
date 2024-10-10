@@ -5,6 +5,11 @@ import { cn } from '@/lib/tailwindUtils'
 import dayjs from 'dayjs'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
+import Markdown from 'markdown-to-jsx'
+import Zoom from 'react-medium-image-zoom'
+
+import 'react-medium-image-zoom/dist/styles.css'
+import React from 'react'
 
 export const runtime = 'edge'
 
@@ -41,16 +46,64 @@ export default function PostPage({ params }: PostPageProps) {
           {dayjs(date).format('YYYY-MM-DD')}
         </div>
         {/* 文章内容 */}
-        <article
-          className={cn(
-            'prose prose-slate dark:prose-invert max-w-none',
-            'prose-pre:max-w-[37rem]',
-            'prose-a:transition-opacity hover:prose-a:opacity-75 dark:hover:prose-a:opacity-85',
-          )}
-          dangerouslySetInnerHTML={{ __html: post.body.html }}
-        />
+        <Markdown
+          options={{
+            wrapper: ArticleWrapper,
+            forceWrapper: true,
+            overrides: {
+              p: {
+                component: ParagraphWithoutImage,
+              },
+              img: {
+                component: ImageZoom,
+              },
+            },
+          }}
+        >
+          {post.body.html}
+        </Markdown>
         <TagList tags={tags} />
       </CardContent>
     </Card>
+  )
+}
+
+function ArticleWrapper({ children }: React.PropsWithChildren) {
+  return (
+    <div
+      className={cn(
+        'prose prose-slate dark:prose-invert max-w-none',
+        'prose-pre:max-w-[37rem]',
+        'prose-a:transition-opacity hover:prose-a:opacity-75 dark:hover:prose-a:opacity-85',
+      )}
+    >
+      {children}
+    </div>
+  )
+}
+
+function ParagraphWithoutImage({ children }: React.PropsWithChildren) {
+  if (!children) {
+    return null
+  }
+
+  // 如果段落只包含图片，则直接返回子元素，避免 <p> 包裹 <div>
+  const childArray = React.Children.toArray(children)
+  if (
+    childArray.length === 1 &&
+    React.isValidElement(childArray[0]) &&
+    childArray[0].type === ImageZoom
+  ) {
+    return <>{children}</>
+  }
+
+  return <p>{children}</p>
+}
+
+function ImageZoom({ src, alt }: { src: string; alt: string }) {
+  return (
+    <Zoom>
+      <img src={src} alt={alt} />
+    </Zoom>
   )
 }

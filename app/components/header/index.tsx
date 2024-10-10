@@ -3,18 +3,18 @@ import Link from 'next/link'
 import { ModeToggle } from './mode-toggle'
 
 const navLinks: { title: string; href: string; description?: string }[] = [
-  {
-    title: '首页',
-    href: '/',
-  },
-  {
-    title: '归档',
-    href: '/archives',
-  },
-  {
-    title: '标签',
-    href: '/tags',
-  },
+  // {
+  //   title: '首页',
+  //   href: '/',
+  // },
+  // {
+  //   title: '归档',
+  //   href: '/archives',
+  // },
+  // {
+  //   title: '标签',
+  //   href: '/tags',
+  // },
 ]
 
 export function Header() {

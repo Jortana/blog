@@ -30,7 +30,7 @@ export function PostCard({ post, isFirst = false }: PostCardProps) {
       )}
       <CardContent className="p-5 space-y-4">
         <article>
-          <h2 className="text-2xl text-primary/85 hover:text-primary transition">
+          <h2 className="text-2xl text-primary/95 hover:text-primary transition">
             <Link href={url}>{title}</Link>
           </h2>
         </article>

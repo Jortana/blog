@@ -15,7 +15,7 @@ export default async function Home() {
     <>
       <div className="space-y-6 mb-6">
         {posts.map((post, index) => (
-          <PostCard key={index} post={post} isFirst={index === 0} />
+          <PostCard key={post._id} post={post} isFirst={index === 0} />
         ))}
       </div>
       <Pagination totalPages={totalPages} currentPage={page} />
