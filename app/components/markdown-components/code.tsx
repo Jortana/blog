@@ -1,15 +1,16 @@
 'use client'
 
 import hljs from 'highlight.js'
-import React, { useEffect, useRef } from 'react'
+import type React from 'react'
+import { useEffect, useRef } from 'react'
 
-export function Code({
-  className = '',
-  children,
-}: React.PropsWithChildren<{ className?: string }>) {
-  if (className?.startsWith('language-')) {
+export function Code(
+  props: React.PropsWithChildren<{ className?: string; class?: string }>,
+) {
+  const { children, className } = props
+  if (props.class?.startsWith('language-')) {
     // 如果是块级代码，渲染为高亮代码块
-    return <CodeBlock className={className}>{children}</CodeBlock>
+    return <CodeBlock className={props.class}>{children}</CodeBlock>
   }
   // 否则为行内代码
   return <InlineCode>{children}</InlineCode>
@@ -25,16 +26,12 @@ export function CodeBlock({
     codeRef.current && hljs.highlightElement(codeRef.current)
   }, [])
 
-  if (!React.isValidElement(children)) {
-    return <>{children}</>
-  }
-
   return (
-    <pre>
-      <code ref={codeRef} className={children.props.className}>
-        {children.props.children}
-      </code>
-    </pre>
+    // <pre>
+    <code ref={codeRef} className={className}>
+      {children}
+    </code>
+    // </pre>
   )
 }
 

@@ -1,27 +1,20 @@
+import { ArticleWrapper } from '@/app/components/markdown-components/article-wrapper'
+import { Code, CodeBlock } from '@/app/components/markdown-components/code'
 import { ImageZoom } from '@/app/components/markdown-components/image'
 import { ParagraphWithoutImage } from '@/app/components/markdown-components/paragraph'
 import { TagList } from '@/app/components/tag-list'
 import { Card, CardContent } from '@/components/ui/card'
 import { getPost } from '@/lib/contentplayerUtils'
-import { cn } from '@/lib/tailwindUtils'
 import dayjs from 'dayjs'
-import type { MDXComponents } from 'mdx/types'
-import { useMDXComponent } from 'next-contentlayer/hooks'
+import Markdown from 'markdown-to-jsx'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
+import React from 'react'
 
 export const runtime = 'edge'
 
 type PostPageProps = {
   params: { slug: string }
-}
-
-const mdxComponents: MDXComponents = {
-  p: ParagraphWithoutImage,
-  img: ImageZoom,
-  // pre: ({ children }) => {
-  //   return <CodeBlock>{children}</CodeBlock>
-  // },
 }
 
 export default function PostPage({ params }: PostPageProps) {
@@ -34,8 +27,6 @@ export default function PostPage({ params }: PostPageProps) {
   }
 
   const { headerImage, date, tags, title, readingTime } = post
-
-  const MDXContent = useMDXComponent(post.body.code)
 
   return (
     <Card className="overflow-hidden">
@@ -52,15 +43,7 @@ export default function PostPage({ params }: PostPageProps) {
           <span>{readingTime.text}</span>
         </div>
         {/* 文章内容 */}
-        <article
-          className={cn(
-            'prose prose-slate dark:prose-invert max-w-none',
-            'prose-a:transition-opacity hover:prose-a:opacity-75 dark:hover:prose-a:opacity-85',
-          )}
-        >
-          <MDXContent components={mdxComponents} />
-        </article>
-        {/* <Markdown
+        <Markdown
           options={{
             wrapper: ArticleWrapper,
             forceWrapper: true,
@@ -71,20 +54,14 @@ export default function PostPage({ params }: PostPageProps) {
               img: {
                 component: ImageZoom,
               },
-              // pre: {
-              //   component: (props) => {
-              //     console.log('=====')
-              //     console.log(props)
-              //     console.log('=====')
-
-              //     return <pre>123</pre>
-              //   },
-              // },
+              code: {
+                component: Code,
+              },
             },
           }}
         >
           {post.body.html}
-        </Markdown> */}
+        </Markdown>
         <TagList tags={tags} />
       </CardContent>
     </Card>
