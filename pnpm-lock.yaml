@@ -32,6 +32,9 @@ importers:
       dayjs:
         specifier: ^1.11.13
         version: 1.11.13
+      highlight.js:
+        specifier: ^11.10.0
+        version: 11.10.0
       lucide-react:
         specifier: ^0.445.0
         version: 0.445.0(react@18.3.1)
@@ -87,6 +90,9 @@ importers:
       '@tailwindcss/typography':
         specifier: ^0.5.15
         version: 0.5.15(tailwindcss@3.4.12(ts-node@10.9.1(@types/node@18.19.50)(typescript@5.6.2)))
+      '@types/mdx':
+        specifier: ^2.0.13
+        version: 2.0.13
       '@types/node':
         specifier: ^18.11.5
         version: 18.19.50
@@ -2223,6 +2229,10 @@ packages:
 
   hastscript@7.2.0:
     resolution: {integrity: sha512-TtYPq24IldU8iKoJQqvZOuhi5CyCQRAbvDOX0x1eW6rsHSxa/1i2CCiptNTotGHJ3VoHRGmqiv6/D3q113ikkw==}
+
+  highlight.js@11.10.0:
+    resolution: {integrity: sha512-SYVnVFswQER+zu1laSya563s+F8VDGt7o35d4utbamowvUNLLMovFqwCLSocpZTz3MgaSRA1IbqRWZv97dtErQ==}
+    engines: {node: '>=12.0.0'}
 
   html-void-elements@2.0.1:
     resolution: {integrity: sha512-0quDb7s97CfemeJAnW9wC0hw78MtW7NU3hqtCD75g2vFlDLt36llsYD7uB7SUzojLMP24N5IatXf7ylGXiGG9A==}
@@ -5972,6 +5982,8 @@ snapshots:
       hast-util-parse-selector: 3.1.1
       property-information: 6.5.0
       space-separated-tokens: 2.0.2
+
+  highlight.js@11.10.0: {}
 
   html-void-elements@2.0.1: {}
 

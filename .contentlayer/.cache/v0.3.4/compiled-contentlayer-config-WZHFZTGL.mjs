@@ -13,8 +13,8 @@ var ReadingTime = defineNestedType(() => ({
 }));
 var Post = defineDocumentType(() => ({
   name: "Post",
-  filePathPattern: "posts/*.md",
-  contentType: "markdown",
+  filePathPattern: "posts/*.mdx",
+  contentType: "mdx",
   fields: {
     title: { type: "string", required: true },
     date: { type: "date", required: true },
@@ -32,7 +32,8 @@ var Post = defineDocumentType(() => ({
       type: "string",
       resolve: async (post) => {
         const content = post.body.raw;
-        const excerptContent = content.split("<!-- more -->")[0] || `${content.slice(0, 200)}...`;
+        const moreRegex = /<!-- more -->|{\/\* more \*\/}/;
+        const excerptContent = content.split(moreRegex)[0] || `${content.slice(0, 200)}...`;
         const plainTextExcerpt = excerptContent.replace(/!\[.*?\]\(.*?\)/g, "").replace(/\[([^\]]+)\]\((.*?)\)/g, "$1").replace(/[`*_{}[\]()#+\-.!]/g, "").replace(/\n/g, " ").trim();
         return plainTextExcerpt;
       }
@@ -79,4 +80,4 @@ export {
   Thought,
   contentlayer_config_default as default
 };
-//# sourceMappingURL=compiled-contentlayer-config-4URCLCKC.mjs.map
+//# sourceMappingURL=compiled-contentlayer-config-WZHFZTGL.mjs.map

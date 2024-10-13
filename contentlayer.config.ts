@@ -14,8 +14,8 @@ const ReadingTime = defineNestedType(() => ({
 
 export const Post = defineDocumentType(() => ({
   name: 'Post',
-  filePathPattern: 'posts/*.md',
-  contentType: 'markdown',
+  filePathPattern: 'posts/*.mdx',
+  contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
     date: { type: 'date', required: true },
@@ -36,8 +36,9 @@ export const Post = defineDocumentType(() => ({
         const content = post.body.raw
 
         // 检查是否包含标识，如果有则截取标识前的内容，否则截取前 200 个字符
+        const moreRegex = /<!-- more -->|{\/\* more \*\/}/
         const excerptContent =
-          content.split('<!-- more -->')[0] || `${content.slice(0, 200)}...`
+          content.split(moreRegex)[0] || `${content.slice(0, 200)}...`
 
         // 将 Markdown 转换为纯文本，去除 Markdown 格式符号
         const plainTextExcerpt = excerptContent
