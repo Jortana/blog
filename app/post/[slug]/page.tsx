@@ -59,25 +59,6 @@ export default function PostPage({ params }: PostPageProps) {
         >
           <MDXContent components={mdxComponents} />
         </article>
-        {/* <Markdown
-          options={{
-            wrapper: ArticleWrapper,
-            forceWrapper: true,
-            overrides: {
-              p: {
-                component: ParagraphWithoutImage,
-              },
-              img: {
-                component: ImageZoom,
-              },
-              code: {
-                component: Code,
-              },
-            },
-          }}
-        >
-          {post.body.html}
-        </Markdown> */}
         <TagList tags={tags} />
       </CardContent>
     </Card>
