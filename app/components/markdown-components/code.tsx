@@ -9,7 +9,6 @@ export function Code(props: React.PropsWithChildren<{ className?: string }>) {
   if (props.className?.startsWith('language-')) {
     return <CodeBlock className={props.className}>{children}</CodeBlock>
   }
-  // 否则为行内代码
   return <InlineCode>{children}</InlineCode>
 }
 
