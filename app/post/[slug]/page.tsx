@@ -28,7 +28,6 @@ export default function PostPage({ params }: PostPageProps) {
   const post = getPost(slug)
 
   if (!post) {
-    // 重定向 404
     notFound()
   }
 
