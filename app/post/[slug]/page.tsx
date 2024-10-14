@@ -5,14 +5,14 @@ import { ParagraphWithoutImage } from '@/app/components/markdown-components/para
 import { TagList } from '@/app/components/tag-list'
 import { Card, CardContent } from '@/components/ui/card'
 import { getAllPostSlugs, getPost } from '@/lib/contentplayerUtils'
+import { cn } from '@/lib/tailwindUtils'
 import dayjs from 'dayjs'
 import Markdown from 'markdown-to-jsx'
+import type { MDXComponents } from 'mdx/types'
+import { useMDXComponent } from 'next-contentlayer/hooks'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import React from 'react'
-import type { MDXComponents } from 'mdx/types'
-import { useMDXComponent } from 'next-contentlayer/hooks'
-import { cn } from '@/lib/tailwindUtils'
 
 type PostPageProps = {
   params: { slug: string }

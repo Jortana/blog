@@ -1,6 +1,6 @@
 import { Pagination } from '@/app/components/pagination'
 import { PostCard } from '@/app/components/post-card'
-import { getPosts, getTotalPostCount, PAGESIZE } from '@/lib/contentplayerUtils'
+import { PAGESIZE, getPosts, getTotalPostCount } from '@/lib/contentplayerUtils'
 
 type PostPageProps = {
   params: { pageIndex: string }
