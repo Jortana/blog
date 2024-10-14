@@ -14,8 +14,8 @@ const ReadingTime = defineNestedType(() => ({
 
 export const Post = defineDocumentType(() => ({
   name: 'Post',
-  filePathPattern: 'posts/*.md',
-  contentType: 'markdown',
+  filePathPattern: 'posts/*.mdx',
+  contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
     date: { type: 'date', required: true },

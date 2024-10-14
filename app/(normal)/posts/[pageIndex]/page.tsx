@@ -1,8 +1,6 @@
 import { Pagination } from '@/app/components/pagination'
 import { PostCard } from '@/app/components/post-card'
-import { getPosts } from '@/lib/contentplayerUtils'
-
-export const runtime = 'edge'
+import { getPosts, getTotalPostCount, PAGESIZE } from '@/lib/contentplayerUtils'
 
 type PostPageProps = {
   params: { pageIndex: string }
@@ -30,4 +28,12 @@ export default function Page({ params }: PostPageProps) {
       <Pagination totalPages={totalPages} currentPage={page} />
     </>
   )
+}
+
+export function generateStaticParams() {
+  const totalPostCount = getTotalPostCount()
+  const pages = Math.ceil(totalPostCount / PAGESIZE)
+  return Array.from({ length: pages }, (_, index) => ({
+    pageIndex: (index + 1).toString(),
+  }))
 }

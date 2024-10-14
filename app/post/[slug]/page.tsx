@@ -4,17 +4,26 @@ import { ImageZoom } from '@/app/components/markdown-components/image'
 import { ParagraphWithoutImage } from '@/app/components/markdown-components/paragraph'
 import { TagList } from '@/app/components/tag-list'
 import { Card, CardContent } from '@/components/ui/card'
-import { getPost } from '@/lib/contentplayerUtils'
+import { getAllPostSlugs, getPost } from '@/lib/contentplayerUtils'
 import dayjs from 'dayjs'
 import Markdown from 'markdown-to-jsx'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import React from 'react'
-
-export const runtime = 'edge'
+import type { MDXComponents } from 'mdx/types'
+import { useMDXComponent } from 'next-contentlayer/hooks'
+import { cn } from '@/lib/tailwindUtils'
 
 type PostPageProps = {
   params: { slug: string }
+}
+
+const mdxComponents: MDXComponents = {
+  p: ParagraphWithoutImage,
+  img: ImageZoom,
+  code: ({ children, className }) => {
+    return <Code className={className}>{children}</Code>
+  },
 }
 
 export default function PostPage({ params }: PostPageProps) {
@@ -27,6 +36,8 @@ export default function PostPage({ params }: PostPageProps) {
   }
 
   const { headerImage, date, tags, title, readingTime } = post
+
+  const MDXContent = useMDXComponent(post.body.code)
 
   return (
     <Card className="overflow-hidden">
@@ -43,7 +54,15 @@ export default function PostPage({ params }: PostPageProps) {
           <span>{readingTime.text}</span>
         </div>
         {/* 文章内容 */}
-        <Markdown
+        <article
+          className={cn(
+            'prose prose-slate dark:prose-invert max-w-none',
+            'prose-a:transition-opacity hover:prose-a:opacity-75 dark:hover:prose-a:opacity-85',
+          )}
+        >
+          <MDXContent components={mdxComponents} />
+        </article>
+        {/* <Markdown
           options={{
             wrapper: ArticleWrapper,
             forceWrapper: true,
@@ -61,9 +80,16 @@ export default function PostPage({ params }: PostPageProps) {
           }}
         >
           {post.body.html}
-        </Markdown>
+        </Markdown> */}
         <TagList tags={tags} />
       </CardContent>
     </Card>
   )
+}
+
+export function generateStaticParams() {
+  const allPostSlugs = getAllPostSlugs()
+  return allPostSlugs.map((slug) => ({
+    slug,
+  }))
 }

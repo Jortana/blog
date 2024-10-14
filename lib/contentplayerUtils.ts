@@ -1,5 +1,7 @@
 import { allPosts } from '@/.contentlayer/generated'
 
+export const PAGESIZE = 5
+
 /**
  * 获取所有文章的数量
  */
@@ -44,7 +46,7 @@ export function getAllTags() {
 /**
  * 返回分页的文章
  */
-export function getPosts(page = 1, pageSize = 5) {
+export function getPosts(page = 1, pageSize = PAGESIZE) {
   // 过滤掉草稿文章并按日期排序
   const posts = allPosts
     .filter((post) => !post.draft)
@@ -72,4 +74,8 @@ export function getPost(slug: string) {
   const post = allPosts.find((post) => post.slug === slug)
 
   return post
+}
+
+export function getAllPostSlugs() {
+  return allPosts.map((post) => post.slug)
 }

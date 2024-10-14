@@ -9,8 +9,9 @@ if (process.env.NODE_ENV === 'development') {
  * @type {import('next').NextConfig}
  **/
 const nextConfig = withContentlayer({
-  // output: 'export',
+  output: 'export',
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',

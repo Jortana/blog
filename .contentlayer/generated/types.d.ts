@@ -19,8 +19,8 @@ export type Post = {
   tags: string[]
   headerImage?: string | undefined
   draft: boolean
-  /** Markdown file body */
-  body: Markdown
+  /** MDX file body */
+  body: MDX
   url: string
   excerpt: string
   headerImage: string

@@ -13,8 +13,8 @@ var ReadingTime = defineNestedType(() => ({
 }));
 var Post = defineDocumentType(() => ({
   name: "Post",
-  filePathPattern: "posts/*.md",
-  contentType: "markdown",
+  filePathPattern: "posts/*.mdx",
+  contentType: "mdx",
   fields: {
     title: { type: "string", required: true },
     date: { type: "date", required: true },
@@ -80,4 +80,4 @@ export {
   Thought,
   contentlayer_config_default as default
 };
-//# sourceMappingURL=compiled-contentlayer-config-SF4X4WID.mjs.map
+//# sourceMappingURL=compiled-contentlayer-config-WZHFZTGL.mjs.map
