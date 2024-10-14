@@ -58,6 +58,7 @@ export default function PostPage({ params }: PostPageProps) {
         >
           <MDXContent components={mdxComponents} />
         </article>
+        {/* Tag */}
         <TagList tags={tags} />
       </CardContent>
     </Card>
