@@ -7,7 +7,6 @@ import { useEffect, useRef } from 'react'
 export function Code(props: React.PropsWithChildren<{ className?: string }>) {
   const { children } = props
   if (props.className?.startsWith('language-')) {
-    // 如果是块级代码，渲染为高亮代码块
     return <CodeBlock className={props.className}>{children}</CodeBlock>
   }
   // 否则为行内代码

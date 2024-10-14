@@ -1,5 +1,4 @@
-import { ArticleWrapper } from '@/app/components/markdown-components/article-wrapper'
-import { Code, CodeBlock } from '@/app/components/markdown-components/code'
+import { Code } from '@/app/components/markdown-components/code'
 import { ImageZoom } from '@/app/components/markdown-components/image'
 import { ParagraphWithoutImage } from '@/app/components/markdown-components/paragraph'
 import { TagList } from '@/app/components/tag-list'
@@ -7,12 +6,10 @@ import { Card, CardContent } from '@/components/ui/card'
 import { getAllPostSlugs, getPost } from '@/lib/contentplayerUtils'
 import { cn } from '@/lib/tailwindUtils'
 import dayjs from 'dayjs'
-import Markdown from 'markdown-to-jsx'
 import type { MDXComponents } from 'mdx/types'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
-import React from 'react'
 
 type PostPageProps = {
   params: { slug: string }
