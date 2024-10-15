@@ -13,7 +13,7 @@ export default async function Home() {
 
   return (
     <>
-      <div className="space-y-6 mb-6">
+      <div className="space-y-6 mb-4">
         {posts.map((post, index) => (
           <PostCard key={post._id} post={post} isFirst={index === 0} />
         ))}

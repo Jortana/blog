@@ -3,6 +3,7 @@ import { Header } from '@app/components/header'
 import type { Metadata } from 'next'
 import { memo } from 'react'
 import './globals.css'
+import { Footer } from './components/footer'
 
 export const metadata: Metadata = {
   // 整个站点共用的 metadata
@@ -30,7 +31,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
         >
           <Header />
           {children}
-          {/* <Footer /> */}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
