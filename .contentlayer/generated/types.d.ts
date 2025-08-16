@@ -26,6 +26,7 @@ export type Post = {
   headerImage: string
   slug: string
   readingTime: nested
+  toc: json
 }
 
 export type Thought = {
@@ -33,9 +34,13 @@ export type Thought = {
   _id: string
   _raw: Local.RawDocumentData
   type: 'Thought'
-  /** Markdown file body */
-  body: Markdown
-
+  title: string
+  date: IsoDateTimeString
+  draft: boolean
+  /** MDX file body */
+  body: MDX
+  url: string
+  readingTime: nested
 }  
 
 /** Nested types */

@@ -63,11 +63,11 @@ export function Pagination({ totalPages, currentPage }: PaginationProps) {
       <PaginationContent>
         {pageNumbers.map((page, index) =>
           page === 'ellipsis-before' || page === 'ellipsis-after' ? (
-            <PaginationItem key={index}>
+            <PaginationItem key={`${page}-${index}`}>
               <PaginationEllipsis>…</PaginationEllipsis>
             </PaginationItem>
           ) : (
-            <PaginationItem key={index}>
+            <PaginationItem key={`page-${page}`}>
               {page === currentPage ? (
                 // 当前页不渲染为链接，使用 span
                 <span

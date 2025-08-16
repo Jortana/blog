@@ -35,6 +35,16 @@ export function Footer() {
             >
               Next.js
             </Link>
+            <span className={cn('mx-2', 'after:content-["·"]')} />
+            <Link
+              className={cn(
+                buttonVariants({ variant: 'link' }),
+                'p-0 text-base h-auto',
+              )}
+              href="https://contentlayer.dev/"
+            >
+              Contentlayer
+            </Link>
           </div>
         </div>
       </footer>

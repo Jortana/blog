@@ -1,10 +1,11 @@
-import type { Post } from '@/.contentlayer/generated'
+import type { Post } from 'contentlayer/generated'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
+import { getPostBadges } from '@/lib/postUtils'
 import dayjs from 'dayjs'
 import Image from 'next/image'
 import Link from 'next/link'
-import { TagList } from '../tag-list'
+import { BadgeList } from '../badge-list'
 
 type PostCardProps = {
   post: Post
@@ -12,7 +13,10 @@ type PostCardProps = {
 }
 
 export function PostCard({ post, isFirst = false }: PostCardProps) {
-  const { headerImage, title, url, excerpt, tags, date } = post
+  const { headerImage, title, url, excerpt, tags, date, category } = post
+
+  const badges = getPostBadges(post)
+
   return (
     <Card className="overflow-hidden">
       {headerImage && (
@@ -35,7 +39,7 @@ export function PostCard({ post, isFirst = false }: PostCardProps) {
           </h2>
         </article>
         <section className="text-primary/75">{excerpt}</section>
-        <TagList tags={tags} />
+        <BadgeList badges={badges} />
         <div className="flex justify-between text-primary/50">
           <div>
             <span>{dayjs(date).format('YYYY-MM-DD')}</span>

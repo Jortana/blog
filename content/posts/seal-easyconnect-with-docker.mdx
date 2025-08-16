@@ -1,14 +1,13 @@
 ---
-title: 用docker封印EasyConnect并连接远程桌面和数据库
+title: 用docker封印EasyConnect
 date: 2021-07-13 23:25:44
 category: 实用工具
-tags: 
+tags:
   - Docker
   - EasyConnect
   - Clash
   - 实用工具
 headerImage: https://ab84760.webp.li/docker-seal-new-1.jpg
-
 ---
 
 我们学校要使用深信服家的 EasyConnect 才能在外面连内网，我又经常需要连学校的电脑和数据库，在使用了一段时间 EasyConnect 之后，我发现这玩意儿不仅流氓，而且难用。流氓在于不用他的时候进程关不掉，卸载还卸载不干净，也不知道他到底要获取什么数据，关于深信服的黑料网上一搜一大堆。难用在于我一开他，虽然是能连上学校内网了，但是我们学校校园网非常差劲，速度本身就不快，还经常连不上 GitHub，用了他之后，我在路由器上配置的代理也没有用，所以我心想能不能抛弃这个流氓客户端，就在不久前，我终于找到了一套解决方案。
@@ -17,14 +16,14 @@ headerImage: https://ab84760.webp.li/docker-seal-new-1.jpg
 
 ## 准备工作
 
-这一套解决方案的原理大致就是使用 Docker 运行 EasyConnect 并暴露出一个 sock5 端口作为代理，然后用配置 Clash 的代理规则，按照一定的规则进行转发。一开始是在知乎的一篇文章：[M1 Mac 用不了深信服 easyconnet？ 用 docker+clash封印它](https://zhuanlan.zhihu.com/p/385845245) 中发现了这个方法，然而他的情况和我稍微有点不一样，他没有连接远程桌面等需求，并且写的也比较简略，所以我就萌发了写一篇 **保姆级** 流程介绍的想法。
+这一套解决方案的原理大致就是使用 Docker 运行 EasyConnect 并暴露出一个 sock5 端口作为代理，然后用配置 Clash 的代理规则，按照一定的规则进行转发。一开始是在知乎的一篇文章：[M1 Mac 用不了深信服 easyconnet？ 用 docker+clash 封印它](https://zhuanlan.zhihu.com/p/385845245) 中发现了这个方法，然而他的情况和我稍微有点不一样，他没有连接远程桌面等需求，并且写的也比较简略，所以我就萌发了写一篇 **保姆级** 流程介绍的想法。
 
 所以，我们需要用到的软件有：
 
-* Docker
-* Clash
-* VNC Viewer（如果你用的 EasyConnect 不需要图形界面就不需要）
-* 文本编辑器（比如 VS Code）
+- Docker
+- Clash
+- VNC Viewer（如果你用的 EasyConnect 不需要图形界面就不需要）
+- 文本编辑器（比如 VS Code）
 
 ### 安装软件
 
@@ -100,7 +99,7 @@ docker run --device /dev/net/tun --cap-add NET_ADMIN -ti -e PASSWORD=xxxx -v $HO
 ```yaml
 # 增加一个名字是 vpn 的 sock5 代理
 proxies:
- - {"name": "vpn", "type": "socks5", "server": "127.0.0.1", "port": "1080"}
+  - { 'name': 'vpn', 'type': 'socks5', 'server': '127.0.0.1', 'port': '1080' }
 
 # 添加 ip-cidr 的规则
 rules:
@@ -128,7 +127,7 @@ rules:
 4. 点击 **settings -> Profile Mixin -> YAML**，点击 **YAML** 右侧的 **Edit**，输入下面的内容，点击右下角的按钮保存。
 
    ```yaml
-   mixin: 
+   mixin:
      hosts:
        'mtalk.google.com': 108.177.125.188
        'services.googleapis.cn': 74.125.203.94
@@ -151,9 +150,9 @@ rules:
        fallback-filter:
          geoip: true
          ipcidr:
-         - 240.0.0.0/4
-         - 0.0.0.0/32
-         - 127.0.0.1/32
+           - 240.0.0.0/4
+           - 0.0.0.0/32
+           - 127.0.0.1/32
        domain:
          - +.google.com
          - +.facebook.com
@@ -163,7 +162,7 @@ rules:
          - +.google.cn
          - +.googleapis.cn
          - +.gvt1.com
-     tun: 
+     tun:
        enable: true
        stack: gvisor
        dns-hijack:

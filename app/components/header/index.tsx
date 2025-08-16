@@ -3,18 +3,18 @@ import Link from 'next/link'
 import { ModeToggle } from './mode-toggle'
 
 const navLinks: { title: string; href: string; description?: string }[] = [
-  // {
-  //   title: '首页',
-  //   href: '/',
-  // },
-  // {
-  //   title: '归档',
-  //   href: '/archives',
-  // },
-  // {
-  //   title: '标签',
-  //   href: '/tags',
-  // },
+  {
+    title: '首页',
+    href: '/',
+  },
+  {
+    title: '絮语',
+    href: '/thoughts',
+  },
+  {
+    title: '文章',
+    href: '/posts',
+  },
 ]
 
 export function Header() {
@@ -22,11 +22,11 @@ export function Header() {
     <nav className="xl:px-0 py-2 px-4 bg-background">
       <div className="mx-auto flex items-center xl:max-w-7xl md:max-w-5xl">
         <h1>
-          <Button variant="ghost">
-            <Link href="/">
+          <Link href="/">
+            <Button variant="ghost">
               <span>Rory's Blog</span>
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </h1>
         <div className="mr-auto flex">
           <Navigation />
@@ -43,9 +43,9 @@ function Navigation() {
   return (
     <>
       {navLinks.map((link) => (
-        <Button variant="ghost" key={link.href}>
-          <Link href={link.href}>{link.title}</Link>
-        </Button>
+        <Link href={link.href} key={link.href}>
+          <Button variant="ghost">{link.title}</Button>
+        </Link>
       ))}
     </>
   )

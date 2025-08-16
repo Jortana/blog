@@ -1,9 +1,10 @@
+import { BadgeList } from '@/app/components/badge-list'
 import { Code } from '@/app/components/markdown-components/code'
 import { ImageZoom } from '@/app/components/markdown-components/image'
 import { ParagraphWithoutImage } from '@/app/components/markdown-components/paragraph'
-import { TagList } from '@/app/components/tag-list'
 import { Card, CardContent } from '@/components/ui/card'
 import { getAllPostSlugs, getPost } from '@/lib/contentplayerUtils'
+import { getPostBadges } from '@/lib/postUtils'
 import { cn } from '@/lib/tailwindUtils'
 import dayjs from 'dayjs'
 import { ChevronUp } from 'lucide-react'
@@ -37,6 +38,8 @@ export default function PostPage({ params }: PostPageProps) {
 
   const MDXContent = useMDXComponent(post.body.code)
 
+  const badges = getPostBadges(post)
+
   return (
     <>
       <Card className="overflow-hidden">
@@ -67,7 +70,7 @@ export default function PostPage({ params }: PostPageProps) {
             <MDXContent components={mdxComponents} />
           </article>
           {/* Tag */}
-          <TagList tags={tags} />
+          <BadgeList badges={badges} />
         </CardContent>
       </Card>
       <div className="fixed bottom-4 right-7 z-[100]">

@@ -19,9 +19,11 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
-      "@app/*": ["./app/*"]
+      "@app/*": ["./app/*"],
+      "contentlayer/generated": ["./.contentlayer/generated"]
     }
   },
   "include": [
@@ -29,8 +31,8 @@
     "**/*.ts",
     "**/*.tsx",
     "next.config.mjs",
-    ".next/types/**/*.ts"
-    // ".contentlayer/generated"
+    ".next/types/**/*.ts",
+    ".contentlayer/generated"
   ],
   "exclude": ["node_modules"]
 }

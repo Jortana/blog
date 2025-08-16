@@ -3,7 +3,30 @@ import {
   defineNestedType,
   makeSource,
 } from 'contentlayer/source-files'
-import { readingTime } from 'reading-time-estimator'
+import { readingTime, type SupportedLanguages } from 'reading-time-estimator'
+
+/**
+ * 计算文章的阅读时间
+ * @param content - 文章内容
+ * @param wordsPerMinute - 每分钟阅读字数，默认400
+ * @param language - 语言，默认中文
+ * @returns 包含阅读时间文本的对象
+ */
+export function calculateReadingTime(
+  content: string,
+  wordsPerMinute = 400,
+  language: SupportedLanguages = 'cn',
+): { text: string } {
+  const stats = readingTime(content, wordsPerMinute, language)
+  const minutes = Math.ceil(stats.minutes) // 取整分钟数
+
+  // 根据分钟数显示中文格式的阅读时间
+  if (minutes <= 1) {
+    return { text: '大约需要 1 分钟阅读' }
+  }
+
+  return { text: `大约需要 ${minutes} 分钟阅读` }
+}
 
 const ReadingTime = defineNestedType(() => ({
   name: 'ReadingTime',
@@ -70,26 +93,36 @@ export const Post = defineDocumentType(() => ({
     readingTime: {
       type: 'nested',
       of: ReadingTime,
-      resolve: (post) => {
-        const stats = readingTime(post.body.raw, 400, 'cn')
-
-        const minutes = Math.ceil(stats.minutes) // 取整分钟数
-
-        // 根据分钟数显示中文格式的阅读时间
-        if (minutes <= 1) {
-          return { text: '大约需要 1 分钟阅读' }
-        }
-
-        return { text: `大约需要 ${minutes} 分钟阅读` }
-      },
+      resolve: (post) => calculateReadingTime(post.body.raw),
+    },
+    toc: {
+      type: 'json',
+      resolve: async (post) => {},
     },
   },
 }))
 
 export const Thought = defineDocumentType(() => ({
   name: 'Thought',
-  filePathPattern: 'thoughts/*.md',
-  contentType: 'markdown',
+  filePathPattern: 'thoughts/*.mdx',
+  contentType: 'mdx',
+  fields: {
+    title: { type: 'string', required: true },
+    date: { type: 'date', required: true },
+    draft: { type: 'boolean', default: false },
+  },
+  computedFields: {
+    url: {
+      type: 'string',
+      resolve: (post) =>
+        `/thought/${post._raw.flattenedPath.replace('thoughts/', '')}`,
+    },
+    readingTime: {
+      type: 'nested',
+      of: ReadingTime,
+      resolve: (post) => calculateReadingTime(post.body.raw),
+    },
+  },
 }))
 
 export default makeSource({
