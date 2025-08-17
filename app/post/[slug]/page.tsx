@@ -5,11 +5,11 @@ import { getAllPostSlugs, getPost } from '@/lib/contentplayerUtils'
 import { getPostBadges } from '@/lib/postUtils'
 import { cn } from '@/lib/tailwindUtils'
 import dayjs from 'dayjs'
-import { ChevronUp } from 'lucide-react'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { Icon } from '@iconify/react'
 
 type PostPageProps = {
   params: { slug: string }
@@ -72,7 +72,7 @@ export default function PostPage({ params }: PostPageProps) {
           )}
           href="#"
         >
-          <ChevronUp />
+          <Icon icon="lucide:chevron-up" className="h-6 w-6" />
         </Link>
       </div>
     </>

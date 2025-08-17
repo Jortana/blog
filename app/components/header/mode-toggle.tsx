@@ -8,24 +8,24 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { cn } from '@/lib/tailwindUtils'
-import { Laptop, Moon, Sun } from 'lucide-react'
+import { Icon } from '@iconify/react'
 import { useTheme } from 'next-themes'
 
 const menuItems = [
   {
     title: '跟随系统',
     value: 'system',
-    icon: <Laptop className="h-[1.2rem] w-[1.2rem]" />,
+    icon: <Icon icon="lucide:laptop" className="h-[1.2rem] w-[1.2rem]" />,
   },
   {
     title: '总是浅色',
     value: 'light',
-    icon: <Sun className="h-[1.2rem] w-[1.2rem]" />,
+    icon: <Icon icon="lucide:sun" className="h-[1.2rem] w-[1.2rem]" />,
   },
   {
     title: '总是深色',
     value: 'dark',
-    icon: <Moon className="h-[1.2rem] w-[1.2rem]" />,
+    icon: <Icon icon="lucide:moon" className="h-[1.2rem] w-[1.2rem]" />,
   },
 ] as const
 
@@ -36,8 +36,14 @@ export function ModeToggle() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon">
-          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <Icon
+            icon="lucide:sun"
+            className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
+          />
+          <Icon
+            icon="lucide:moon"
+            className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
+          />
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>

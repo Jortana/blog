@@ -4,8 +4,8 @@ import Link from 'next/link'
 
 export function Footer() {
   return (
-    <>
-      <footer className="px-8 pt-12 pb-24 bg-background">
+    <div className="px-4 bg-background">
+      <footer className="px-4 mx-auto pt-12 pb-24 xl:max-w-7xl md:max-w-5xl">
         <div
           className={cn(
             'text-primary/80 text-center',
@@ -48,6 +48,6 @@ export function Footer() {
           </div>
         </div>
       </footer>
-    </>
+    </div>
   )
 }
