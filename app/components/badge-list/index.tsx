@@ -1,7 +1,6 @@
 import { badgeVariants } from '@/components/ui/badge'
 import type { PostBadge } from '@/lib/postUtils'
 import { cn } from '@/lib/tailwindUtils'
-import Link from 'next/link'
 
 type TagListProps = {
   badges: PostBadge[]
