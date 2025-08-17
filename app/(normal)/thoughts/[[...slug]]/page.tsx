@@ -1,3 +1,4 @@
+import { Pagination } from '@/app/components/pagination'
 import { ThoughtCard } from '@/app/components/thought-card'
 import {
   THOUGHT_PAGE_SIZE,
@@ -28,11 +29,11 @@ export default function Page({ params }: PostPageProps) {
   return (
     <>
       <div className="space-y-6 mb-6">
-        {thoughts.map((thought, index) => (
+        {thoughts.map((thought) => (
           <ThoughtCard key={thought._id} thought={thought} />
         ))}
       </div>
-      {/* <Pagination totalPages={totalPages} currentPage={page} /> */}
+      <Pagination totalPages={totalPages} currentPage={page} />
     </>
   )
 }

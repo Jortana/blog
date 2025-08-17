@@ -73,8 +73,8 @@ const config = {
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
       gridTemplateColumns: {
-        'balanced-wide': '23fr 54fr 23fr',
-        'narrow-wide': '12fr 25fr',
+        'balanced-wide': '20fr 60fr 20fr',
+        'narrow-wide': '10fr 25fr',
       },
     },
   },

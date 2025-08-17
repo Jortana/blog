@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default async function Home() {
   return (
     <div className="px-4 min-h-[calc(100vh-56px-168px)] flex flex-col">
-      <div className="space-y-2 mx-auto px-4 pt-4 pb-10 xl:max-w-7xl md:max-w-5xl flex flex-col justify-between">
+      <div className="flex-1 space-y-2 mx-auto px-4 pt-4 pb-10 xl:max-w-7xl md:max-w-5xl flex flex-col justify-between">
         <div
           className={cn(
             'prose prose-slate dark:prose-invert max-w-none',

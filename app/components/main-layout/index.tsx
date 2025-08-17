@@ -11,17 +11,15 @@ export default function MainLayout({ left, main, right }: MainLayoutProps) {
     <>
       <div
         className={cn(
-          'mx-auto px-4 pt-4 pb-10 xl:max-w-7xl md:max-w-5xl',
+          'mx-auto px-4 py-6 xl:max-w-7xl md:max-w-5xl md:min-h-[calc(100vh-56px-168px)]',
           'md:grid md:gap-x-3 md:grid-cols-narrow-wide',
           'xl:grid-cols-balanced-wide',
         )}
       >
-        <div className="order-none overflow-y-auto">{main}</div>
+        <div className="order-none">{main}</div>
 
         <aside className="-order-1">
-          <div className="sticky top-6 h-[calc(100vh-3.5rem)] overflow-y-auto">
-            {left}
-          </div>
+          <div className="sticky top-6 overflow-y-auto">{left}</div>
         </aside>
 
         <aside className="order-1 hidden xl:block">{right}</aside>

@@ -32,3 +32,7 @@ export function CodeBlock({
 export function InlineCode({ children }: React.PropsWithChildren) {
   return <code>{children}</code>
 }
+
+export function Pre({ children }: React.PropsWithChildren) {
+  return <pre className="whitespace-pre-wrap">{children}</pre>
+}
