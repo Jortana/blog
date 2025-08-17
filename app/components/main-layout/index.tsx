@@ -12,7 +12,7 @@ export default function MainLayout({ left, main, right }: MainLayoutProps) {
       <div
         className={cn(
           'mx-auto px-4 py-6 xl:max-w-7xl md:max-w-5xl md:min-h-[calc(100vh-56px-168px)]',
-          'md:grid md:gap-x-3 md:grid-cols-narrow-wide',
+          'md:grid md:gap-x-4 md:grid-cols-narrow-wide',
           'xl:grid-cols-balanced-wide',
         )}
       >
