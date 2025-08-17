@@ -15,6 +15,15 @@ type PostPageProps = {
   params: { slug: string }
 }
 
+export const generateMetadata = async ({ params }: PostPageProps) => {
+  const { slug } = params
+  const post = getPost(slug)
+
+  return {
+    title: `${post?.title} | Rory's Blog`,
+  }
+}
+
 export default function PostPage({ params }: PostPageProps) {
   const { slug } = params
   const post = getPost(slug)

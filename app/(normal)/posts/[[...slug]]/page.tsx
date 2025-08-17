@@ -6,11 +6,11 @@ import {
   getTotalPostCount,
 } from '@/lib/contentplayerUtils'
 
-type PostPageProps = {
+type PostsPageProps = {
   params: { slug?: string[] }
 }
 
-export const generateMetadata = async ({ params }: PostPageProps) => {
+export const generateMetadata = async ({ params }: PostsPageProps) => {
   const { slug } = params
   // 如果没有传入 pageIndex，默认为第1页
   const pageNumber = slug?.[0] || '1'
@@ -20,7 +20,7 @@ export const generateMetadata = async ({ params }: PostPageProps) => {
   }
 }
 
-export default function Page({ params }: PostPageProps) {
+export default function Page({ params }: PostsPageProps) {
   const { slug } = params
   // 如果没有传入 pageIndex 或解析失败，默认为第1页
   const pageNumber = slug?.[0] ? Number.parseInt(slug[0], 10) : 1

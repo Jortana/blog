@@ -10,6 +10,15 @@ type ThoughtPageProps = {
   params: { slug: string }
 }
 
+export const generateMetadata = async ({ params }: ThoughtPageProps) => {
+  const { slug } = params
+  const thought = getThought(slug)
+
+  return {
+    title: `${thought?.title} | Rory's Blog`,
+  }
+}
+
 export default function ThoughtPage({ params }: ThoughtPageProps) {
   const { slug } = params
   const thought = getThought(slug)

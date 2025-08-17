@@ -16,7 +16,7 @@ export const generateMetadata = async ({ params }: PostPageProps) => {
   const pageNumber = slug?.[0] || '1'
 
   return {
-    title: `文章列表: 第 ${pageNumber} 页 | Rory's Blog`,
+    title: `絮语列表: 第 ${pageNumber} 页 | Rory's Blog`,
   }
 }
 
