@@ -39,7 +39,7 @@ export function PostList({
   const { infos, title } = getInfosByPathname(pathname)
 
   return (
-    <Card className="h-full">
+    <Card className="hidden md:block h-full">
       <CardContent className="pt-4">
         {!!title && <h2 className="text-lg font-bold mb-2">{title}</h2>}
         <div>
