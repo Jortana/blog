@@ -1,10 +1,10 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { cn } from '@/lib/tailwindUtils'
-import { usePathname } from 'next/navigation'
-import Link from 'next/link'
 import { getAllPostsInfo, getAllThoughtsInfo } from '@/lib/contentplayerUtils'
+import { cn } from '@/lib/tailwindUtils'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 function getInfosByPathname(pathname: string) {
   // 处理文章相关路径：/posts, /post/*, /posts/*

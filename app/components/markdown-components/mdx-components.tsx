@@ -1,8 +1,8 @@
 import type { MDXComponents } from 'mdx/types'
+import { Anchor } from './anchor'
 import { Code } from './code'
 import { ImageZoom } from './image'
 import { ParagraphWithoutImage } from './paragraph'
-import { Anchor } from './anchor'
 
 export const mdxComponents: MDXComponents = {
   p: ParagraphWithoutImage,

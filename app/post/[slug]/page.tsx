@@ -4,12 +4,12 @@ import { Card, CardContent } from '@/components/ui/card'
 import { getAllPostSlugs, getPost } from '@/lib/contentplayerUtils'
 import { getPostBadges } from '@/lib/postUtils'
 import { cn } from '@/lib/tailwindUtils'
+import { Icon } from '@iconify/react'
 import dayjs from 'dayjs'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { Icon } from '@iconify/react'
 
 type PostPageProps = {
   params: { slug: string }

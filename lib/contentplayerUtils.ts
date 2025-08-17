@@ -1,5 +1,5 @@
 import { allPosts, allThoughts } from 'contentlayer/generated'
-import { readingTime, type SupportedLanguages } from 'reading-time-estimator'
+import { type SupportedLanguages, readingTime } from 'reading-time-estimator'
 import { remark } from 'remark'
 import { visit } from 'unist-util-visit'
 
