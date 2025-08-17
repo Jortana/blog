@@ -16,8 +16,12 @@ function getInfosByPathname(pathname: string) {
     return { infos: getAllPostsInfo(), title: '所有文章' }
   }
 
-  // 处理思考相关路径：/thoughts, /thoughts/*
-  if (pathname === '/thoughts' || pathname.startsWith('/thoughts/')) {
+  // 处理思考相关路径：/thoughts, /thoughts/*, /thought/*
+  if (
+    pathname === '/thoughts' ||
+    pathname.startsWith('/thoughts/') ||
+    pathname.startsWith('/thought/')
+  ) {
     return { infos: getAllThoughtsInfo(), title: '所有碎碎念' }
   }
 

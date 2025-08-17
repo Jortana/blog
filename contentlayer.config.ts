@@ -114,13 +114,17 @@ export const Thought = defineDocumentType(() => ({
   computedFields: {
     url: {
       type: 'string',
-      resolve: (post) =>
-        `/thought/${post._raw.flattenedPath.replace('thoughts/', '')}`,
+      resolve: (thought) =>
+        `/thought/${thought._raw.flattenedPath.replace('thoughts/', '')}`,
     },
     readingTime: {
       type: 'nested',
       of: ReadingTime,
-      resolve: (post) => calculateReadingTime(post.body.raw),
+      resolve: (thought) => calculateReadingTime(thought.body.raw),
+    },
+    slug: {
+      type: 'string',
+      resolve: (thought) => thought._raw.flattenedPath.replace('thoughts/', ''),
     },
   },
 }))

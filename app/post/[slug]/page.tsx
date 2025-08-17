@@ -1,14 +1,11 @@
 import { BadgeList } from '@/app/components/badge-list'
-import { Code } from '@/app/components/markdown-components/code'
-import { ImageZoom } from '@/app/components/markdown-components/image'
-import { ParagraphWithoutImage } from '@/app/components/markdown-components/paragraph'
+import { mdxComponents } from '@/app/components/markdown-components/mdx-components'
 import { Card, CardContent } from '@/components/ui/card'
 import { getAllPostSlugs, getPost } from '@/lib/contentplayerUtils'
 import { getPostBadges } from '@/lib/postUtils'
 import { cn } from '@/lib/tailwindUtils'
 import dayjs from 'dayjs'
 import { ChevronUp } from 'lucide-react'
-import type { MDXComponents } from 'mdx/types'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -16,14 +13,6 @@ import { notFound } from 'next/navigation'
 
 type PostPageProps = {
   params: { slug: string }
-}
-
-const mdxComponents: MDXComponents = {
-  p: ParagraphWithoutImage,
-  img: ImageZoom,
-  code: ({ children, className }) => {
-    return <Code className={className}>{children}</Code>
-  },
 }
 
 export default function PostPage({ params }: PostPageProps) {
@@ -54,23 +43,25 @@ export default function PostPage({ params }: PostPageProps) {
           </div>
         )}
         <CardContent className="p-6 space-y-4">
-          <h1 className="text-2xl font-bold">{title}</h1>
-          <div className="text-primary/50 space-x-2">
-            <span>{dayjs(date).format('YYYY-MM-DD')}</span>
-            <span>·</span>
-            <span>{readingTime.text}</span>
-          </div>
-          {/* 文章内容 */}
-          <article
-            className={cn(
-              'prose prose-slate dark:prose-invert max-w-none',
-              'prose-a:transition-opacity hover:prose-a:opacity-75 dark:hover:prose-a:opacity-85',
-            )}
-          >
-            <MDXContent components={mdxComponents} />
+          <article>
+            <h1 className="text-2xl font-bold">{title}</h1>
+            <div className="text-primary/50 space-x-2">
+              <span>{dayjs(date).format('YYYY-MM-DD')}</span>
+              <span>·</span>
+              <span>{readingTime.text}</span>
+            </div>
+            {/* 文章内容 */}
+            <div
+              className={cn(
+                'prose prose-slate dark:prose-invert max-w-none',
+                'prose-a:transition-opacity prose-a:underline-offset-2 hover:prose-a:opacity-75 dark:hover:prose-a:opacity-85',
+              )}
+            >
+              <MDXContent components={mdxComponents} />
+            </div>
+            {/* Tag */}
+            <BadgeList badges={badges} />
           </article>
-          {/* Tag */}
-          <BadgeList badges={badges} />
         </CardContent>
       </Card>
       <div className="fixed bottom-4 right-7 z-[100]">

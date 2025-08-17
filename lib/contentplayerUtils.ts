@@ -83,12 +83,18 @@ export function getPosts(page = 1, pageSize = POST_PAGE_SIZE) {
 /**
  * 获取所有文章的简要信息
  */
-export function getAllPostsInfo() {
-  return sortedPublishedPosts.map((post) => ({
-    _id: post._id,
-    title: post.title,
-    url: post.url,
-  }))
+export function getAllPostsInfo<
+  K extends keyof (typeof sortedPublishedPosts)[0] = '_id' | 'title' | 'url',
+>(
+  keys: K[] = ['_id', 'title', 'url'] as K[],
+): Pick<(typeof sortedPublishedPosts)[0], K>[] {
+  return sortedPublishedPosts.map((post) => {
+    const result = {} as Pick<(typeof sortedPublishedPosts)[0], K>
+    for (const key of keys) {
+      result[key] = post[key]
+    }
+    return result
+  })
 }
 
 /**
@@ -135,6 +141,28 @@ export function getPostsByTag(
   }
 }
 
+export function getThought(slug: string) {
+  const thought = sortedPublishedThoughts.find(
+    (thought) => thought.slug === slug,
+  )
+
+  return thought
+}
+
+export function getAllThoughtsInfo<
+  K extends keyof (typeof sortedPublishedThoughts)[0] = '_id' | 'title' | 'url',
+>(
+  keys: K[] = ['_id', 'title', 'url'] as K[],
+): Pick<(typeof sortedPublishedThoughts)[0], K>[] {
+  return sortedPublishedThoughts.map((thought) => {
+    const result = {} as Pick<(typeof sortedPublishedThoughts)[0], K>
+    for (const key of keys) {
+      result[key] = thought[key]
+    }
+    return result
+  })
+}
+
 function slugify(text: string) {
   return text.toString().toLowerCase().trim().replace(/\s+/g, '-')
 }
@@ -170,24 +198,10 @@ export function getAllThoughts() {
 }
 
 /**
- * 获取所有 Thoughts 的简要信息
- */
-export function getAllThoughtsInfo() {
-  console.log('sortedPublishedThoughts')
-  return sortedPublishedThoughts.map((post) => ({
-    _id: post._id,
-    title: post.title,
-    url: post.url,
-  }))
-}
-
-/**
  * 获取所有 Thoughts 的分页数据
  */
 export function getThoughts(page = 1, pageSize = THOUGHT_PAGE_SIZE) {
   const thoughts = sortedPublishedThoughts
-  console.log('thoughts')
-  console.log(thoughts)
 
   // 计算总页数
   const totalThoughts = thoughts.length
@@ -205,6 +219,10 @@ export function getThoughts(page = 1, pageSize = THOUGHT_PAGE_SIZE) {
     totalPages,
     thoughts: pageThoughts,
   }
+}
+
+export function getTotalThoughtCount() {
+  return sortedPublishedThoughts.length
 }
 
 // export function buildNestedTOC(headings) {

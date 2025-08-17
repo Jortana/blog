@@ -1,7 +1,8 @@
+import { ThoughtCard } from '@/app/components/thought-card'
 import {
-  POST_PAGE_SIZE,
-  getPosts,
-  getTotalPostCount,
+  THOUGHT_PAGE_SIZE,
+  getThoughts,
+  getTotalThoughtCount,
 } from '@/lib/contentplayerUtils'
 
 type PostPageProps = {
@@ -22,24 +23,23 @@ export default function Page({ params }: PostPageProps) {
   const { slug } = params
   // 如果没有传入 pageIndex 或解析失败，默认为第1页
   const pageNumber = slug?.[0] ? Number.parseInt(slug[0], 10) : 1
-  const { totalPages, page, posts } = getPosts(pageNumber)
+  const { totalPages, page, thoughts } = getThoughts(pageNumber)
 
   return (
     <>
-      Thoughts
-      {/* <div className="space-y-6 mb-6">
-        {posts.map((post, index) => (
-          <PostCard key={post._id} post={post} isFirst={index === 0} />
+      <div className="space-y-6 mb-6">
+        {thoughts.map((thought, index) => (
+          <ThoughtCard key={thought._id} thought={thought} />
         ))}
       </div>
-      <Pagination totalPages={totalPages} currentPage={page} /> */}
+      {/* <Pagination totalPages={totalPages} currentPage={page} /> */}
     </>
   )
 }
 
 export function generateStaticParams() {
-  const totalPostCount = getTotalPostCount()
-  const pages = Math.ceil(totalPostCount / POST_PAGE_SIZE)
+  const totalThoughtCount = getTotalThoughtCount()
+  const pages = Math.ceil(totalThoughtCount / THOUGHT_PAGE_SIZE)
 
   // 生成所有可能的页面路径参数
   const params = []
