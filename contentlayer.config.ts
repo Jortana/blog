@@ -4,6 +4,66 @@ import {
   makeSource,
 } from 'contentlayer/source-files'
 import { readingTime, type SupportedLanguages } from 'reading-time-estimator'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import rehypeSlug from 'rehype-slug'
+import { unified } from 'unified'
+import remarkParse from 'remark-parse'
+import remarkMdx from 'remark-mdx'
+import { visit } from 'unist-util-visit'
+import GithubSlugger from 'github-slugger'
+import type { Heading, PhrasingContent, Root } from 'mdast'
+
+// 目录项类型
+const TocItem = defineNestedType(() => ({
+  name: 'TocItem',
+  fields: {
+    depth: { type: 'number', required: true }, // 1..6
+    value: { type: 'string', required: true }, // 标题文本
+    slug: { type: 'string', required: true }, // 与 rehype-slug 一致
+  },
+}))
+
+// 提取 TOC
+function extractToc(raw: string) {
+  const tree = unified().use(remarkParse).use(remarkMdx).parse(raw) as Root
+  const slugger = new GithubSlugger()
+  const items: Array<{ depth: number; value: string; slug: string }> = []
+
+  visit(tree, 'heading', (node: Heading) => {
+    const depth = node.depth
+    if (depth < 2 || depth > 6) return // 只要 h2-h6（一般用 h2/h3 就够）
+
+    // 拿纯文本
+    const text = (node.children || [])
+      .filter(
+        (c: PhrasingContent) =>
+          c.type === 'text' ||
+          c.type === 'inlineCode' ||
+          c.type === 'emphasis' ||
+          c.type === 'strong' ||
+          c.type === 'link',
+      )
+      .map((c: PhrasingContent) => {
+        if (c.type === 'link') {
+          return (c.children || [])
+            .map((cc: PhrasingContent) => (cc.type === 'text' ? cc.value : ''))
+            .join('')
+        }
+        if (c.type === 'text') {
+          return c.value
+        }
+        return ''
+      })
+      .join('')
+      .trim()
+
+    if (!text) return
+    const slug = slugger.slug(text)
+    items.push({ depth, value: text, slug })
+  })
+
+  return items
+}
 
 /**
  * 计算文章的阅读时间
@@ -96,8 +156,9 @@ export const Post = defineDocumentType(() => ({
       resolve: (post) => calculateReadingTime(post.body.raw),
     },
     toc: {
-      type: 'json',
-      resolve: async (post) => {},
+      type: 'list',
+      of: TocItem,
+      resolve: async (post) => extractToc(post.body.raw),
     },
   },
 }))
@@ -132,4 +193,11 @@ export const Thought = defineDocumentType(() => ({
 export default makeSource({
   contentDirPath: 'content',
   documentTypes: [Post, Thought],
+  mdx: {
+    // remarkPlugins: [remarkGfm],
+    rehypePlugins: [
+      rehypeSlug,
+      [rehypeAutolinkHeadings, { behavior: 'append' }], // 可选
+    ],
+  },
 })

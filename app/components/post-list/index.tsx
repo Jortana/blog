@@ -39,16 +39,16 @@ export function PostList({
   const { infos, title } = getInfosByPathname(pathname)
 
   return (
-    <Card className="hidden md:block h-full">
+    <Card className="hidden md:block">
       <CardContent className="pt-4">
-        {!!title && <h2 className="text-lg font-bold mb-2">{title}</h2>}
-        <div>
+        {!!title && <div className="text-lg font-bold mb-2">{title}</div>}
+        <div className="flex flex-col">
           {infos.map((info) => (
             <Link href={info.url} key={info._id}>
               <Button
                 variant="link"
                 className={cn(
-                  'p-0',
+                  'p-0 h-9',
                   'hover:no-underline',
                   'text-primary/70 hover:text-primary',
                   currentId === info._id && 'text-primary',

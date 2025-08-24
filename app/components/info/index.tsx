@@ -17,14 +17,6 @@ export function Info() {
       title: '文章',
       count: totalPost,
     },
-    {
-      title: '分类',
-      count: totalCategory,
-    },
-    {
-      title: '标签',
-      count: totalTag,
-    },
   ]
 
   return (

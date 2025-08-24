@@ -52,7 +52,7 @@ export default function PostPage({ params }: PostPageProps) {
           </div>
         )}
         <CardContent className="p-6">
-          <article className="space-y-4">
+          <article className="space-y-4" id="content">
             <h1 className="text-2xl font-bold">{title}</h1>
             <div className="text-primary/50 space-x-2">
               <span>{dayjs(date).format('YYYY-MM-DD')}</span>
