@@ -14,9 +14,15 @@ type TocItem = {
 
 type TableOfContentsProps = {
   toc: TocItem[]
+  className?: string
+  onItemClick?: (slug: string) => void
 }
 
-export default function TableOfContents({ toc }: TableOfContentsProps) {
+export default function TableOfContents({
+  toc,
+  className,
+  onItemClick,
+}: TableOfContentsProps) {
   const searchToc = [{ depth: 1, value: '', slug: 'h1' }, ...toc]
   const activeId = useActiveSection(searchToc, {
     topLine: 0.2,
@@ -24,7 +30,7 @@ export default function TableOfContents({ toc }: TableOfContentsProps) {
   })
 
   return (
-    <Card className="md:sticky md:top-6">
+    <Card className={cn(className)}>
       <CardHeader className="pb-2">
         <div className="text-lg font-bold">文章目录</div>
       </CardHeader>
@@ -45,7 +51,12 @@ export default function TableOfContents({ toc }: TableOfContentsProps) {
                 size="sm"
                 asChild
               >
-                <Link href={`#${item.slug}`}>{item.value}</Link>
+                <Link
+                  href={`#${item.slug}`}
+                  onClick={() => onItemClick?.(item.slug)}
+                >
+                  {item.value}
+                </Link>
               </Button>
             </li>
           ))}

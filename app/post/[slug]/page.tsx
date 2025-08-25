@@ -1,14 +1,13 @@
 import { BadgeList } from '@/app/components/badge-list'
+import GoTop from '@/app/components/go-top'
 import { mdxComponents } from '@/app/components/markdown-components/mdx-components'
 import { Card, CardContent } from '@/components/ui/card'
 import { getAllPostSlugs, getPost } from '@/lib/contentplayerUtils'
 import { getPostBadges } from '@/lib/postUtils'
 import { cn } from '@/lib/tailwindUtils'
-import { Icon } from '@iconify/react'
 import dayjs from 'dayjs'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Image from 'next/image'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 type PostPageProps = {
@@ -73,17 +72,7 @@ export default function PostPage({ params }: PostPageProps) {
           </article>
         </CardContent>
       </Card>
-      <div className="fixed bottom-4 right-7 z-[100]">
-        <Link
-          className={cn(
-            'flex items-center justify-center w-10 h-10 bg-secondary rounded shadow',
-            'hover:text-sky-500 transition-colors',
-          )}
-          href="#"
-        >
-          <Icon icon="lucide:chevron-up" className="h-6 w-6" />
-        </Link>
-      </div>
+      <GoTop toc={post.toc} />
     </>
   )
 }

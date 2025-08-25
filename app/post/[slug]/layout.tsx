@@ -21,7 +21,11 @@ export default function PostLayout({
 
   return (
     <MainLayout
-      left={<TableOfContents toc={post.toc} />}
+      left={
+        <div className="hidden md:block md:sticky md:top-6">
+          <TableOfContents toc={post.toc} />
+        </div>
+      }
       right={<PostList currentId={post._id} />}
       main={children}
     />
