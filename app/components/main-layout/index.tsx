@@ -17,9 +17,7 @@ export default function MainLayout({ left, main, right }: MainLayoutProps) {
         )}
       >
         <div className="order-none">{main}</div>
-
         <aside className="-order-1">{left}</aside>
-
         <aside className="order-1 hidden xl:block">{right}</aside>
       </div>
     </>
