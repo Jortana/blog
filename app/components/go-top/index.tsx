@@ -5,7 +5,14 @@ import { cn } from '@/lib/tailwindUtils'
 import { Icon } from '@iconify/react'
 import Link from 'next/link'
 import TableOfContents from '../toc'
-import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet'
+import {
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+} from '@/components/ui/sheet'
 import { useState } from 'react'
 
 type GoTopProps = {
@@ -31,6 +38,10 @@ export default function GoTop({ toc }: GoTopProps) {
             </div>
           </SheetTrigger>
           <SheetContent side="bottom">
+            <SheetHeader className="sr-only">
+              <SheetTitle>文章目录</SheetTitle>
+              <SheetDescription>文章目录</SheetDescription>
+            </SheetHeader>
             <TableOfContents
               toc={toc}
               className="border-none"
